@@ -1,49 +1,32 @@
-package com.kuntsevich.task4.service;
+package com.kuntsevich.task4.service.search;
 
 import com.kuntsevich.task4.entity.CustomArray;
 import com.kuntsevich.task4.exception.CustomArrayException;
+import com.kuntsevich.task4.service.sort.SortArrayService;
 
-public class ArrayService {
+public class SearchArrayService {
 
     private static final String ARRAY_NULL_MESSAGE = "Array is null";
 
-    public void bubbleSort(CustomArray customArray) {
+    public int binarySearch(CustomArray customArray, int number) throws CustomArrayException {
         if (customArray != null) {
-            int length = customArray.size();
-            for (int i = 0; i < length - 1; i++) {
-                for (int j = 0; j < length - i - 1; j++) {
-                    try {
-                        // TODO: 22.06.2020 Add option to choose sort rules
-                        if (customArray.get(j) > customArray.get(i)) {
-                            int temp = customArray.get(j);
-                            customArray.set(customArray.get(j + 1), j);
-                            customArray.set(temp, j + 1);
-                        }
-                    } catch (CustomArrayException e) {
-                        e.printStackTrace();
-                    }
+            int index = -1;
+            int low = 0;
+            int high = customArray.size() - 1;
+            while (low <= high) {
+                int mid = (low + high) / 2;
+                if (customArray.get(mid) < number) {
+                    low = mid + 1;
+                } else if (customArray.get(mid) > number) {
+                    high = mid - 1;
+                } else if (customArray.get(mid) == number) {
+                    index = mid;
+                    break;
                 }
+            }
+            return index;
         }
-    }
-    }
-
-    public void quickSort(CustomArray customArray) {
-        if (customArray != null) {
-            // TODO: 22.06.2020
-        }
-    }
-
-    public void insertSort(CustomArray customArray) {
-        if (customArray != null) {
-            // TODO: 22.06.2020
-        }
-    }
-
-    public int binarySearch(CustomArray customArray, int number) {
-        if (customArray != null) {
-            // TODO: 22.06.2020
-        }
-        return -1;
+        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
     }
 
     public int max(CustomArray customArray) throws CustomArrayException {
@@ -74,6 +57,18 @@ public class ArrayService {
         throw new CustomArrayException(ARRAY_NULL_MESSAGE);
     }
 
+    public int sum(CustomArray customArray) {
+        int sum = 0;
+        for (int i = 0; i < customArray.size(); i++) {
+            try {
+                sum += customArray.get(i);
+            } catch (CustomArrayException e) {
+                e.printStackTrace();
+            }
+        }
+        return sum;
+    }
+
     public CustomArray allPrimeNumbers(CustomArray customArray) throws CustomArrayException {
         if (customArray != null) {
             CustomArray result = new CustomArray();
@@ -97,7 +92,7 @@ public class ArrayService {
                     result.add(number);
                 }
             }
-            return customArray;
+            return result;
         }
         throw new CustomArrayException(ARRAY_NULL_MESSAGE);
     }
@@ -135,13 +130,19 @@ public class ArrayService {
     }
 
     private int numberLength(int number) {
+        if (number < 0) {
+            number *= -1;
+        }
         String stringNumber = Integer.toString(number);
         return stringNumber.length();
     }
 
     private boolean isPrime(int number) {
-        if (number == 1) {
+        if (number <= 1) {
             return false;
+        }
+        if (number == 2) {
+            return true;
         }
         if (number % 2 != 0) {
             for (int i = 3; i < Math.round(Math.sqrt(number)); i++) {

@@ -87,7 +87,7 @@ public class CustomArray {
         }
         CustomArray customArray = (CustomArray) o;
         if (this.size() == customArray.size()) {
-            for (int i = 0; i < array.length; i++) {
+            for (int i = 0; i < this.size(); i++) {
                 try {
                     if (this.get(i) != customArray.get(i)) {
                         return false;
