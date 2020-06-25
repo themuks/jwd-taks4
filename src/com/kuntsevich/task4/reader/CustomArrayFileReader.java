@@ -1,4 +1,4 @@
-package com.kuntsevich.task4.file;
+package com.kuntsevich.task4.reader;
 
 import com.kuntsevich.task4.entity.CustomArray;
 import com.kuntsevich.task4.exception.CustomArrayException;
