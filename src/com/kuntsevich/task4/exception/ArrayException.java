@@ -1,4 +1,4 @@
-package com.kuntsevich.task4.entity;
+package com.kuntsevich.task4.exception;
 
 public class ArrayException extends Exception {
 

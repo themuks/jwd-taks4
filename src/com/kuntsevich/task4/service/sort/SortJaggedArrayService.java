@@ -1,6 +1,6 @@
 package com.kuntsevich.task4.service.sort;
 
-import com.kuntsevich.task4.entity.ArrayException;
+import com.kuntsevich.task4.exception.ArrayException;
 import com.kuntsevich.task4.exception.CustomArrayException;
 
 public class SortJaggedArrayService {
