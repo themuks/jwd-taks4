@@ -1,16 +1,16 @@
-package test.kuntsevich.task4.service.sort;
+package test.kuntsevich.task4.service;
 
 import com.kuntsevich.task4.entity.CustomArray;
 import com.kuntsevich.task4.exception.CustomArrayException;
-import com.kuntsevich.task4.service.sort.SortArrayService;
+import com.kuntsevich.task4.service.SortCustomArrayService;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class SortArrayServiceTest {
+public class SortCustomArrayServiceTest {
 
-    private SortArrayService sortArrayService = new SortArrayService();
+    private SortCustomArrayService sortCustomArrayService = new SortCustomArrayService();
 
     @DataProvider(name = "sortArrays")
     public Object[][] createData() {
@@ -31,7 +31,7 @@ public class SortArrayServiceTest {
     @Test(dataProvider = "sortArrays")
     public void testBubbleSortPositive(CustomArray customArray, CustomArray expectedCustomArray) {
         try {
-            sortArrayService.bubbleSort(customArray);
+            sortCustomArrayService.bubbleSort(customArray);
         } catch (CustomArrayException e) {
             fail();
         }
@@ -40,13 +40,13 @@ public class SortArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBubbleSortException() throws CustomArrayException {
-        sortArrayService.bubbleSort(null);
+        sortCustomArrayService.bubbleSort(null);
     }
 
     @Test(dataProvider = "sortArrays")
     public void testQuickSortPositive(CustomArray customArray, CustomArray expectedCustomArray) {
         try {
-            sortArrayService.quickSort(customArray, 0, customArray.size() - 1);
+            sortCustomArrayService.quickSort(customArray, 0, customArray.size() - 1);
         } catch (CustomArrayException e) {
             fail();
         }
@@ -55,13 +55,13 @@ public class SortArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testQuickSortException() throws CustomArrayException {
-        sortArrayService.quickSort(null, 0, 1);
+        sortCustomArrayService.quickSort(null, 0, 1);
     }
 
     @Test(dataProvider = "sortArrays")
     public void testInsertSortPositive(CustomArray customArray, CustomArray expectedCustomArray) {
         try {
-            sortArrayService.insertSort(customArray);
+            sortCustomArrayService.insertSort(customArray);
         } catch (CustomArrayException e) {
             fail();
         }
@@ -70,6 +70,6 @@ public class SortArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testInsertSortException() throws CustomArrayException {
-        sortArrayService.insertSort(null);
+        sortCustomArrayService.insertSort(null);
     }
 }

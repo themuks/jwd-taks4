@@ -1,8 +1,9 @@
-package test.kuntsevich.task4.service.sort;
+package test.kuntsevich.task4.service;
 
 import com.kuntsevich.task4.exception.ArrayException;
 import com.kuntsevich.task4.exception.CustomArrayException;
-import com.kuntsevich.task4.service.sort.*;
+import com.kuntsevich.task4.service.ArrayComparator;
+import com.kuntsevich.task4.service.SortJaggedArrayService;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -16,9 +17,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortMax() {
         int[][] jaggedArray = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
-        CompareService compareService = new MaxCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, false);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.MAX_VALUE, false);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }
@@ -30,9 +30,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortMaxReversed() {
         int[][] jaggedArray = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        CompareService compareService = new MaxCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, true);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.MAX_VALUE, true);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }
@@ -44,9 +43,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortMin() {
         int[][] jaggedArray = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
-        CompareService compareService = new MinCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, false);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.MIN_VALUE, false);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }
@@ -58,9 +56,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortMinReversed() {
         int[][] jaggedArray = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        CompareService compareService = new MinCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, true);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.MIN_VALUE, true);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }
@@ -72,9 +69,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortSum() {
         int[][] jaggedArray = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
-        CompareService compareService = new SumCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, false);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.SUM, false);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }
@@ -86,9 +82,8 @@ public class SortJaggedArrayServiceTest {
     @Test
     public void testBubbleSortSumReversed() {
         int[][] jaggedArray = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        CompareService compareService = new SumCompareService();
         try {
-            sortJaggedArrayService.bubbleSort(jaggedArray, compareService, true);
+            sortJaggedArrayService.bubbleSort(jaggedArray, ArrayComparator.SUM, true);
         } catch (CustomArrayException | ArrayException e) {
             fail();
         }

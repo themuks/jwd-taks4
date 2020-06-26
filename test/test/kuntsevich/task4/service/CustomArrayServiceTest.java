@@ -1,23 +1,22 @@
-package test.kuntsevich.task4.service.search;
+package test.kuntsevich.task4.service;
 
 import com.kuntsevich.task4.entity.CustomArray;
 import com.kuntsevich.task4.exception.CustomArrayException;
-import com.kuntsevich.task4.service.search.SearchArrayService;
-import org.testng.annotations.DataProvider;
+import com.kuntsevich.task4.service.CustomArrayService;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class SearchArrayServiceTest {
+public class CustomArrayServiceTest {
 
-    private SearchArrayService searchArrayService = new SearchArrayService();
+    private CustomArrayService customArrayService = new CustomArrayService();
 
     @Test
     public void testBinarySearchPositive() {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            int actual = searchArrayService.binarySearch(customArray, 0);
+            int actual = customArrayService.binarySearch(customArray, 0);
             int expected = 5;
             assertEquals(actual, expected);
         } catch (CustomArrayException e) {
@@ -30,7 +29,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            int actual = searchArrayService.binarySearch(customArray, 10);
+            int actual = customArrayService.binarySearch(customArray, 10);
             int expected = -1;
             assertEquals(actual, expected);
         } catch (CustomArrayException e) {
@@ -40,7 +39,7 @@ public class SearchArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBinarySearchException() throws CustomArrayException {
-        searchArrayService.binarySearch(null, 10);
+        customArrayService.binarySearch(null, 10);
     }
 
     @Test
@@ -48,7 +47,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, 100, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            int actual = searchArrayService.max(customArray);
+            int actual = customArrayService.max(customArray);
             int expected = 100;
             assertEquals(actual, expected);
         } catch (CustomArrayException e) {
@@ -58,7 +57,7 @@ public class SearchArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testMaxException() throws CustomArrayException {
-        searchArrayService.max(null);
+        customArrayService.max(null);
     }
 
     @Test
@@ -66,7 +65,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, -100, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            int actual = searchArrayService.min(customArray);
+            int actual = customArrayService.min(customArray);
             int expected = -100;
             assertEquals(actual, expected);
         } catch (CustomArrayException e) {
@@ -76,7 +75,7 @@ public class SearchArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testMinException() throws CustomArrayException {
-        searchArrayService.min(null);
+        customArrayService.min(null);
     }
 
     @Test
@@ -84,7 +83,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            int actual = searchArrayService.sum(customArray);
+            int actual = customArrayService.sum(customArray);
             int expected = 0;
             assertEquals(actual, expected);
         } catch (CustomArrayException e) {
@@ -97,7 +96,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            CustomArray actual = searchArrayService.allPrimeNumbers(customArray);
+            CustomArray actual = customArrayService.allPrimeNumbers(customArray);
             int[] expectedArray = new int[]{2, 3, 5};
             CustomArray expected = new CustomArray(expectedArray);
             assertEquals(actual, expected);
@@ -108,15 +107,15 @@ public class SearchArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testAllPrimeNumbersException() throws CustomArrayException {
-        searchArrayService.allPrimeNumbers(null);
+        customArrayService.allPrimeNumbers(null);
     }
 
     @Test
-    public void testAllFibonachiNumbersPositive() {
+    public void testAllFibonacciNumbersPositive() {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
         try {
             CustomArray customArray = new CustomArray(array);
-            CustomArray actual = searchArrayService.allFibonachiNumbers(customArray);
+            CustomArray actual = customArrayService.allFibonacciNumbers(customArray);
             int[] expectedArray = new int[]{1, 2, 3, 5};
             CustomArray expected = new CustomArray(expectedArray);
             assertEquals(actual, expected);
@@ -126,8 +125,8 @@ public class SearchArrayServiceTest {
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
-    public void testAllFibonachiNumbersException() throws CustomArrayException {
-        searchArrayService.allFibonachiNumbers(null);
+    public void testAllFibonacciNumbersException() throws CustomArrayException {
+        customArrayService.allFibonacciNumbers(null);
     }
 
     @Test
@@ -135,7 +134,7 @@ public class SearchArrayServiceTest {
         int[] array = new int[]{-5, -4, -3, -2, -1, 0, 11, 22, 31, 42, 54};
         try {
             CustomArray customArray = new CustomArray(array);
-            CustomArray actual = searchArrayService.numbersWithoutRepetition(customArray, 2);
+            CustomArray actual = customArrayService.numbersWithoutRepetition(customArray, 2);
             int[] expectedArray = new int[]{31, 42, 54};
             CustomArray expected = new CustomArray(expectedArray);
             assertEquals(actual, expected);
@@ -146,6 +145,6 @@ public class SearchArrayServiceTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testNumbersWithoutRepetitionException() throws CustomArrayException {
-        searchArrayService.numbersWithoutRepetition(null, 3);
+        customArrayService.numbersWithoutRepetition(null, 3);
     }
 }

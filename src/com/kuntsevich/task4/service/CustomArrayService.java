@@ -1,60 +1,59 @@
-package com.kuntsevich.task4.service.search;
+package com.kuntsevich.task4.service;
 
 import com.kuntsevich.task4.entity.CustomArray;
 import com.kuntsevich.task4.exception.CustomArrayException;
-import com.kuntsevich.task4.service.sort.SortArrayService;
 
-public class SearchArrayService {
+public class CustomArrayService {
 
     private static final String ARRAY_NULL_MESSAGE = "Array is null";
 
     public int binarySearch(CustomArray customArray, int number) throws CustomArrayException {
-        if (customArray != null) {
-            int index = -1;
-            int low = 0;
-            int high = customArray.size() - 1;
-            while (low <= high) {
-                int mid = (low + high) / 2;
-                if (customArray.get(mid) < number) {
-                    low = mid + 1;
-                } else if (customArray.get(mid) > number) {
-                    high = mid - 1;
-                } else if (customArray.get(mid) == number) {
-                    index = mid;
-                    break;
-                }
-            }
-            return index;
+        if (customArray == null) {
+            throw new CustomArrayException(ARRAY_NULL_MESSAGE);
         }
-        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
+        int index = -1;
+        int low = 0;
+        int high = customArray.size() - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (customArray.get(mid) < number) {
+                low = mid + 1;
+            } else if (customArray.get(mid) > number) {
+                high = mid - 1;
+            } else if (customArray.get(mid) == number) {
+                index = mid;
+                break;
+            }
+        }
+        return index;
     }
 
     public int max(CustomArray customArray) throws CustomArrayException {
-        if (customArray != null) {
-            int max = customArray.get(0);
-            for (int i = 1; i < customArray.size(); i++) {
-                int number = customArray.get(i);
-                if (max < number) {
-                    max = number;
-                }
-            }
-            return max;
+        if (customArray == null) {
+            throw new CustomArrayException(ARRAY_NULL_MESSAGE);
         }
-        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
+        int max = customArray.get(0);
+        for (int i = 1; i < customArray.size(); i++) {
+            int number = customArray.get(i);
+            if (max < number) {
+                max = number;
+            }
+        }
+        return max;
     }
 
     public int min(CustomArray customArray) throws CustomArrayException {
-        if (customArray != null) {
-            int min = customArray.get(0);
-            for (int i = 1; i < customArray.size(); i++) {
-                int number = customArray.get(i);
-                if (min > number) {
-                    min = number;
-                }
-            }
-            return min;
+        if (customArray == null) {
+            throw new CustomArrayException(ARRAY_NULL_MESSAGE);
         }
-        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
+        int min = customArray.get(0);
+        for (int i = 1; i < customArray.size(); i++) {
+            int number = customArray.get(i);
+            if (min > number) {
+                min = number;
+            }
+        }
+        return min;
     }
 
     public int sum(CustomArray customArray) {
@@ -70,31 +69,31 @@ public class SearchArrayService {
     }
 
     public CustomArray allPrimeNumbers(CustomArray customArray) throws CustomArrayException {
-        if (customArray != null) {
-            CustomArray result = new CustomArray();
-            for (int i = 0; i < customArray.size(); i++) {
-                int number = customArray.get(i);
-                if (isPrime(number)) {
-                    result.add(number);
-                }
-            }
-            return result;
+        if (customArray == null) {
+            throw new CustomArrayException(ARRAY_NULL_MESSAGE);
         }
-        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
+        CustomArray result = new CustomArray();
+        for (int i = 0; i < customArray.size(); i++) {
+            int number = customArray.get(i);
+            if (isPrime(number)) {
+                result.add(number);
+            }
+        }
+        return result;
     }
 
-    public CustomArray allFibonachiNumbers(CustomArray customArray) throws CustomArrayException {
-        if (customArray != null) {
-            CustomArray result = new CustomArray();
-            for (int i = 0; i < customArray.size(); i++) {
-                int number = customArray.get(i);
-                if (isFibonachi(number)) {
-                    result.add(number);
-                }
-            }
-            return result;
+    public CustomArray allFibonacciNumbers(CustomArray customArray) throws CustomArrayException {
+        if (customArray == null) {
+            throw new CustomArrayException(ARRAY_NULL_MESSAGE);
         }
-        throw new CustomArrayException(ARRAY_NULL_MESSAGE);
+        CustomArray result = new CustomArray();
+        for (int i = 0; i < customArray.size(); i++) {
+            int number = customArray.get(i);
+            if (isFibonachi(number)) {
+                result.add(number);
+            }
+        }
+        return result;
     }
 
     public CustomArray numbersWithoutRepetition(CustomArray customArray, int digitsCount) throws CustomArrayException {
